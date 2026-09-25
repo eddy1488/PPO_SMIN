@@ -9,6 +9,54 @@ Esta guia es un resumen estructurado de los conceptos fundamentales de la Progra
 Dividir el codigo separa la **interfaz** (que hace) de la **implementacion** (como lo hace).
 
 * **Archivo `.h` (Header / Cabecera):** Define los atributos privados y declara las firmas de los metodos. Usa guardas de inclusion (`#ifndef`, `#define`, `#endif`).
+
+
+---
+
+## 1. Archivo de Cabecera: `NombreClase.h`
+
+```cpp
+#ifndef NOMBRECLASE_H
+#define NOMBRECLASE_H
+
+// Incluye aquí otras librerías u objetos si los necesitas
+// #include <iostream>
+// #include "OtraClase.h"
+
+class NombreClase {
+
+    private:
+        // 1. ATRIBUTOS PRIVADOS
+        // Variables internas que solo la clase puede modificar directamente
+        int atributo1;
+        float atributo2;
+
+    public:
+        // 2. CONSTRUCTORES
+        // Constructor por defecto (opcional)
+        NombreClase();
+
+        // Constructor con parámetros
+        NombreClase(int param1, float param2);
+
+        // 3. GETTERS (Lectura - Siempre llevan 'const' al final)
+        int getAtributo1() const;
+        float getAtributo2() const;
+
+        // 4. SETTERS (Escritura - NO llevan 'const')
+        void setAtributo1(int nuevoValor1);
+        void setAtributo2(float nuevoValor2);
+
+        // 5. MÉTODOS DE CONSULTA / LECTURA (Llevan 'const' al final)
+        void affichage() const;
+        bool esIgual(const NombreClase& otroObjeto) const;
+
+        // 6. MÉTODOS QUE MODIFICAN EL OBJETO (NO llevan 'const')
+        void modificarValores(int val1, float val2);
+};
+
+#endif // NOMBRECLASE_H
+
 * **Archivo `.cpp` (Source / Fuente):** Aqui se escribe la logica real de las funciones usando el operador de resolucion de ambito `::`.
 
 ### Cuándo usar y cuándo NO:
@@ -30,6 +78,61 @@ Point::Point(float px, float py) {
 }
 
 ```
+
+
+#include <iostream>
+#include "NombreClase.h" // ¡OBLIGATORIO! Incluir siempre su propia cabecera
+
+using namespace std;
+
+// 1. CONSTRUCTORES
+
+// Implementación del constructor por defecto (valores base)
+NombreClase::NombreClase() : atributo1(0), atributo2(0.0f) {
+    // Código adicional de inicialización si es necesario
+}
+
+// Implementación del constructor con parámetros usando Lista de Inicialización
+NombreClase::NombreClase(int param1, float param2) : atributo1(param1), atributo2(param2) {
+    // Si usas la lista de arriba, las llaves suelen quedar vacías
+}
+
+// 2. GETTERS
+
+int NombreClase::getAtributo1() const {
+    return atributo1;
+}
+
+float NombreClase::getAtributo2() const {
+    return atributo2;
+}
+
+// 3. SETTERS
+
+void NombreClase::setAtributo1(int nuevoValor1) {
+    // Aquí puedes agregar validaciones antes de cambiar el valor
+    atributo1 = nuevoValor1;
+}
+
+void NombreClase::setY(float nuevoValor2) {
+    atributo2 = nuevoValor2;
+}
+
+// 4. MÉTODOS DE CONSULTA Y LÓGICA
+
+void NombreClase::affichage() const {
+    cout << "Atributo 1: " << atributo1 << " | Atributo 2: " << atributo2 << endl;
+}
+
+bool NombreClase::esIgual(const NombreClase& otroObjeto) const {
+    // Compara el objeto actual (atributo1, atributo2) con el recibido por referencia
+    return (atributo1 == otroObjeto.getAtributo1() && atributo2 == otroObjeto.getAtributo2());
+}
+
+void NombreClase::modificarValores(int val1, float val2) {
+    atributo1 = val1;
+    atributo2 = val2;
+}
 
 ### B. Lista de Inicializacion (Con dos puntos `:`)
 
