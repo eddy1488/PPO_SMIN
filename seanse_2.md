@@ -79,7 +79,7 @@ Point::Point(float px, float py) {
 
 ```
 
-
+```cpp
 #include <iostream>
 #include "NombreClase.h" // ¡OBLIGATORIO! Incluir siempre su propia cabecera
 
@@ -133,7 +133,7 @@ void NombreClase::modificarValores(int val1, float val2) {
     atributo1 = val1;
     atributo2 = val2;
 }
-
+```
 ### B. Lista de Inicializacion (Con dos puntos `:`)
 
 Le dice al compilador que construya las variables **antes** de entrar a las llaves.
