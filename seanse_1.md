@@ -101,28 +101,6 @@ int g(INDIVIDU & p); p mest pas une variable locale
 int g(const INDIVIDU& p) tput modification de p est interdite
 
 
-int* p;              // puntero normal
-                      // puede cambiar el valor apuntado, y puede reapuntar
-
-const int* p;        // puntero a algo constante
-                      // NO puede cambiar el valor apuntado
-                      // SI puede reapuntar a otra cosa
-
-int* const p;        // puntero constante
-                      // SI puede cambiar el valor apuntado
-                      // NO puede reapuntar (queda fijo a esa dirección)
-
-const int* const p;  // todo constante
-                      // no puede hacer ninguna de las dos cosas
-
-
-
-INDIVIDU p;              // copia el objeto, se puede modificar la copia
-const INDIVIDU p;        // copia el objeto, NO se puede modificar la copia
-INDIVIDU& p;              // no copia, referencia al original, se puede modificar el original
-const INDIVIDU& p;        // no copia, referencia al original, NO se puede modificar
-
-
 
 
 
@@ -199,5 +177,27 @@ Cómo distinguirlos: si `&` está pegado al tipo en una declaración (`int&`), e
 
 
 
+```
+int* p;              // puntero normal
+                      // puede cambiar el valor apuntado, y puede reapuntar
+
+const int* p;        // puntero a algo constante
+                      // NO puede cambiar el valor apuntado
+                      // SI puede reapuntar a otra cosa
+
+int* const p;        // puntero constante
+                      // SI puede cambiar el valor apuntado
+                      // NO puede reapuntar (queda fijo a esa dirección)
+
+const int* const p;  // todo constante
+                      // no puede hacer ninguna de las dos cosas
+```
+
+```
+INDIVIDU p;              // copia el objeto, se puede modificar la copia
+const INDIVIDU p;        // copia el objeto, NO se puede modificar la copia
+INDIVIDU& p;              // no copia, referencia al original, se puede modificar el original
+const INDIVIDU& p;        // no copia, referencia al original, NO se puede modificar
+```
 
 
